@@ -10,7 +10,7 @@ public class TestGame {
 
     @BeforeEach
     void runBefore() {
-        testGame = new model.Game("Title", "MAC", 2024, Type.DIGITAL, "test");
+        testGame = new Game("Title", "MAC", 2024, Type.DIGITAL, "test");
     }
 
     @Test

@@ -11,7 +11,7 @@ public class Catalogue {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds a game to the catalogue
+    // EFFECTS: adds a game to the catalogue if not already in it
     public void addGame(Game game) {
         // STUB
         }
@@ -31,6 +31,10 @@ public class Catalogue {
     // EFFECTS: Deletes game from the listOfGames
     public void sellGame(Game game) {
         // STUB
+    }
+
+    public ArrayList<Game> getListofGames() {
+        return this.listOfGames;
     }
 
 
