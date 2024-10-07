@@ -11,7 +11,7 @@ for which system the game is, the year the game was purchased, a
 percent completed value, a rating of the game out of 10 and the genre */
 public class Game {
     private String title;           // name of the game
-    private Type type;              // if the game is physical or digital
+    private Type format;            // if the game is physical or digital
     private String platform;        // the system the game plays on
     private int yearBought;         // the year of purchase
     private int percentCompleted;   // the percent completion value
@@ -20,7 +20,7 @@ public class Game {
 
     public Game(String title, String system, int whenBought, Type physical, String genre) {
         this.title = title;
-        this.type = physical;
+        this.format = physical;
         this.platform = system;
         this.yearBought = whenBought;
         this.percentCompleted = 0;
@@ -49,8 +49,8 @@ public class Game {
         return this.title;
     }
 
-    public Type getType() {
-        return this.type;
+    public Type getFormat() {
+        return this.format;
     }
 
     public String getPlatform() {
