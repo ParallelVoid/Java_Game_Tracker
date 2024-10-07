@@ -32,7 +32,7 @@ public class Game {
     // MODIFIES: this
     // EFFECTS: Updates the rating of the game by making rating = newRating
     public void rateGame(float newRating) {
-        // STUB
+        this.rating = newRating;
     }
 
     // REQUIRES: newPercent must be 0, 25, 50, 80 or 100; 0 means the game
@@ -42,7 +42,7 @@ public class Game {
     // EFFECTS: Updates the percent completion value of the game
     //          by making percentCompleted = newPercent
     public void updateCompletion(int newPercent) {
-        // STUB
+        this.percentCompleted = newPercent;
     }
 
     public String getTitle() {

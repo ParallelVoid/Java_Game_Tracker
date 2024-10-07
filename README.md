@@ -14,6 +14,7 @@ The primary targets are users who either collect video games or have a large bac
 
 ## User Stories
 1. As a user, I want to be able to add a game to my catalogue of games, that has a specifications of `name`, `platform`, `date bought` and if the game format is `physical` or `digital`
+1. As a user, I want to be able to view all the games in my catalogue
 1. As a user, I want to be able to view a list of games that remain unplayed in the catalogue
 1. As a user, I want to be able to change the percent completion of a game from the catalogue
 1. As a user, I want to be able to remove a game, by marking it as `sold`
