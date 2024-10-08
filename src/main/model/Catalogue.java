@@ -4,17 +4,19 @@ import java.util.*;
 
 // Represents a collection of games
 public class Catalogue {
-    ArrayList<Game> listOfGames;    // collection of games
+    ArrayList<Game> listOfGames; // collection of games
 
     public Catalogue() {
-        // Stub
+        listOfGames = new ArrayList<Game>();
     }
 
     // MODIFIES: this
     // EFFECTS: adds a game to the catalogue if not already in it
     public void addGame(Game game) {
-        // STUB
+        if (!(listOfGames.contains(game))) {
+            listOfGames.add(game);
         }
+    }
 
     // EFFECTS: Filters the catalogue and gets all the unfinished games
     public List<Game> getUnplayedGames() {
@@ -26,16 +28,15 @@ public class Catalogue {
         return listOfGames;
     }
 
-    // REQUIRES: Game must be in the listOfGames 
+    // REQUIRES: Game must be in the listOfGames
     // MODIFIES: this
     // EFFECTS: Deletes game from the listOfGames
     public void sellGame(Game game) {
-        // STUB
+        listOfGames.remove(game);
     }
 
     public ArrayList<Game> getListofGames() {
         return this.listOfGames;
     }
-
 
 }
