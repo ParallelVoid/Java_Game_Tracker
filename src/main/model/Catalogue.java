@@ -20,12 +20,24 @@ public class Catalogue {
 
     // EFFECTS: Filters the catalogue and gets all the unfinished games
     public List<Game> getUnplayedGames() {
-        return listOfGames;
+        return filterGames(GameValues.PERCENTCOMPLETED, "0");
     }
 
     // EFFECTS: Filters the catalogue and gets all the games of a certain genre
     public List<Game> getGamesOfGenre(String genre) {
-        return listOfGames;
+        return filterGames(GameValues.GENRE, genre);
+    }
+
+    // EFFECTS: Helper function for getUnplayedGames and getGamesOfGenre that
+    //          filters the list of Games
+    public List<Game> filterGames(GameValues filterType, String filterValue) {
+        ArrayList<Game> result = new ArrayList<>();
+        for (int i = 0; i < listOfGames.size(); i++) {
+            if (listOfGames.get(i).match(filterType,filterValue)) {
+                result.add(listOfGames.get(i));
+            }
+        }
+        return result;
     }
 
     // REQUIRES: Game must be in the listOfGames

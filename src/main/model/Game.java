@@ -5,7 +5,16 @@ enum Type {
     DIGITAL
   }
 
-  
+enum GameValues {
+    TITLE,
+    FORMAT,
+    PLATFORM,
+    PERCENTCOMPLETED,
+    RATING,
+    GENRE
+  }
+
+
 /* Represents a game that has a name, a physical or digital status,
 for which system the game is, the year the game was purchased, a 
 percent completed value, a rating of the game out of 10 and the genre */
@@ -43,6 +52,29 @@ public class Game {
     //          by making percentCompleted = newPercent
     public void updateCompletion(int newPercent) {
         this.percentCompleted = newPercent;
+    }
+
+    // REQUIRES:filterValue must be a string that represents a possible value for appropriate variable
+    // EFFECTS: Helper for filterGames() that returns true if filterValue is equal to the game's value
+    public boolean match(GameValues filterType, String filterValue) throws NullPointerException{
+        switch (filterType) {
+            case GameValues.PERCENTCOMPLETED:
+                return (Integer.parseInt(filterValue) == this.getPercentCompleted());
+            case GameValues.GENRE:
+                return (filterValue == this.getGenre());
+            case GameValues.FORMAT:
+                return (Type.valueOf(filterValue) == getFormat());
+            case GameValues.PLATFORM:
+                return (filterValue == this.getPlatform());
+            case GameValues.RATING:
+                float v = Float.parseFloat(filterValue);
+                float f = Math.abs(v - this.getRating());
+                boolean res = f < 1;
+                return res;
+
+            default:
+                return false;
+        }
     }
 
     public String getTitle() {

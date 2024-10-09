@@ -41,4 +41,32 @@ public class TestGame {
         testGame.updateCompletion(25);
         assertEquals(testGame.getPercentCompleted(), 25);
     }
+
+    @Test
+    void testMatch() {
+        assertTrue(testGame.match(GameValues.FORMAT, "DIGITAL"));
+        assertTrue(testGame.match(GameValues.GENRE, "test"));
+        assertTrue(testGame.match(GameValues.PERCENTCOMPLETED, "0"));
+        assertTrue(testGame.match(GameValues.PLATFORM, "MAC"));
+        assertTrue(testGame.match(GameValues.RATING, "0"));
+
+        assertFalse(testGame.match(GameValues.FORMAT, "PHYSICAL"));
+        assertFalse(testGame.match(GameValues.GENRE, "platformer"));
+        assertFalse(testGame.match(GameValues.PERCENTCOMPLETED, "5"));
+        assertFalse(testGame.match(GameValues.PLATFORM, "NES"));
+        assertFalse(testGame.match(GameValues.RATING, "6"));
+        assertFalse(testGame.match(GameValues.TITLE, "6"));
+        assertFalse(testGame.match(GameValues.TITLE, "test"));
+
+        testGame.rateGame(0.9f);
+        assertTrue(testGame.match(GameValues.RATING, "0"));
+
+        testGame.rateGame(0.5f);
+        assertTrue(testGame.match(GameValues.RATING, "0"));
+        assertFalse(testGame.match(GameValues.PERCENTCOMPLETED, "1"));
+
+        // Game testGame2 = new Game("Title2", "MAC", 2024, Type.PHYSICAL, "test2");
+        // assertTrue(testGame2.match(GameValues.FORMAT, "PHYSICAL"));
+        // assertFalse(testGame2.match(GameValues.FORMAT, "DIGITAL"));
+    }
 }
