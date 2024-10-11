@@ -2,7 +2,7 @@ package ui;
 
 import java.util.*;
 
-import org.junit.platform.engine.TestDescriptor.*;
+// import org.junit.platform.engine.TestDescriptor.*;
 
 import model.*;
 
@@ -21,6 +21,7 @@ public class CatalogueApp {
     }
 
     // EFFECTS: Processes user inputs
+    @SuppressWarnings("methodlength")
     private void runCatalogue() {
         running = true;
         while (running) {

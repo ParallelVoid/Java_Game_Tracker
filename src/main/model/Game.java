@@ -39,7 +39,7 @@ public class Game {
 
     // REQUIRES:filterValue must be a string that represents a possible value for appropriate variable
     // EFFECTS: Helper for filterGames() that returns true if filterValue is equal to the game's value
-    public boolean match(GameValues filterType, String filterValue) throws NullPointerException{
+    public boolean match(GameValues filterType, String filterValue) throws NullPointerException {
         switch (filterType) {
             case GameValues.PERCENTCOMPLETED:
                 return (Float.parseFloat(filterValue) == this.getPercentCompleted());

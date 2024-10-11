@@ -7,4 +7,4 @@ public enum GameValues {
     PERCENTCOMPLETED,
     RATING,
     GENRE
-  }
+}
