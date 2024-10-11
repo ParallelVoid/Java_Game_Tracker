@@ -69,31 +69,109 @@ public class CatalogueApp {
         System.out.println(str8);
     }
 
+    private Game findGame(String name) {
+        for (int i = 0; i < catalogue.getListofGames().size(); i++) {
+            if (name.equals(catalogue.getListofGames().get(i).getTitle())) {
+                return catalogue.getListofGames().get(i);
+            }
+        }
+        System.out.println("Game does not exist");
+        return null;
+    }
+
     // EFFECTS: Prints the title of games in list with corresponding system
     private void printGamesInList(List<Game> games) {
-        // Stub
+        for (int i = 0; i < games.size(); i++) {
+            System.out.println(games.get(i).getTitle() + "(" + games.get(i).getPlatform() + ")");
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: reads the terminal to create a new game
     private void addGame(Catalogue catalogue) {
-        // Stub
+        System.out.println("What game do you have?");
+        String newGame = in.nextLine();
+        System.out.println("Is your copy of " + newGame + " digital or physical?\n If physical enter true, else false");
+        boolean physicalBool = Boolean.parseBoolean(in.nextLine());
+        System.out.println("For what system is " + newGame + "?");
+        String system = in.nextLine();
+        System.out.println("What Genre is " + newGame + "?");
+        String genre = in.nextLine();
+        System.out.println("When was this game purchase?");
+        int whenPurchased = Integer.parseInt(in.nextLine());
+        if (physicalBool) {
+            Game game = new Game(newGame, system, whenPurchased, model.Type.PHYSICAL, genre);
+            catalogue.addGame(game);
+        } else {
+            Game game = new Game(newGame, system, whenPurchased, model.Type.DIGITAL, genre);
+            catalogue.addGame(game);
+        }
     }
 
     // EFFECTS: Finds the game in catalogue through title, allows user to 
     //          preform actions to the game
     private void getGame() {
-        // Stub
+        System.out.println("What game are you looking for?");
+        String gameTitle = in.nextLine();
+        Game game = findGame(gameTitle);
+        gameFunctions(game);
+    }
+
+    // EFFECTS: Helper for getGame(), that prints the details of the game and allows the user
+    //          to call specific game functions from this point on
+    private void gameFunctions(Game game) {
+        System.out.println("Title: " + game.getTitle());
+        System.out.println("Platform: " + game.getPlatform());
+        System.out.println("Format: " + game.getFormat());
+        System.out.println("Genre: " + game.getGenre());
+        System.out.println("Year Bought: " + game.getYearBought());
+        System.out.println("Percent Completed: " + game.getPercentCompleted());
+        System.out.println("Rating: " + game.getRating() + "\n");
+
+        System.out.println(
+                "You may select 1 to update percent completion, 2 to update rating, or 3 to return to main menu");
+        String choice = in.nextLine();
+
+        switch (choice) {
+            case "1":
+                updatePercent(game);
+                break;
+            case "2":
+                updateRating(game);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    // EFFECTS: Helper for gameFunctions(), that takes a terminal input, then updates game value
+    private void updatePercent(Game game) {
+        System.out.println("How much of " + game.getTitle() + " have you played?");
+        int percent = Integer.parseInt(in.nextLine());
+        game.updateCompletion(percent);
+    }
+
+    // EFFECTS: Helper for gameFunctions(), that takes a terminal input, then updates game value
+    private void updateRating(Game game) {
+        System.out.println("What would you rate " + game.getTitle() + " out of 10?");
+        int rating = Integer.parseInt(in.nextLine());
+        game.rateGame(rating);
     }
 
     // MODIFIES: this
     // EFFECTS: Finds the game by title (taken from terminal), and removes from Catalogue
     private void sell() {
-        // Stub
+        System.out.println("What Game are you selling?");
+        String sellGame = in.nextLine();
+        Game sellingGame = findGame(sellGame);
+        catalogue.sellGame(sellingGame);
     }
 
     // EFFECTS: Takes a user input of the genre and prints the list
     private void genreGamesPrint() {
-        // Stub
+        System.out.println("What Genre are we filtering?");
+        String filterGenre = in.nextLine();
+        printGamesInList(catalogue.getGamesOfGenre(filterGenre));
     }
 }
