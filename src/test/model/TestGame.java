@@ -64,9 +64,5 @@ public class TestGame {
         testGame.rateGame(0.5f);
         assertTrue(testGame.match(GameValues.RATING, "0"));
         assertFalse(testGame.match(GameValues.PERCENTCOMPLETED, "1"));
-
-        // Game testGame2 = new Game("Title2", "MAC", 2024, Type.PHYSICAL, "test2");
-        // assertTrue(testGame2.match(GameValues.FORMAT, "PHYSICAL"));
-        // assertFalse(testGame2.match(GameValues.FORMAT, "DIGITAL"));
     }
 }

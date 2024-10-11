@@ -1,20 +1,5 @@
 package model;
 
-enum Type {
-    PHYSICAL,
-    DIGITAL
-  }
-
-enum GameValues {
-    TITLE,
-    FORMAT,
-    PLATFORM,
-    PERCENTCOMPLETED,
-    RATING,
-    GENRE
-  }
-
-
 /* Represents a game that has a name, a physical or digital status,
 for which system the game is, the year the game was purchased, a 
 percent completed value, a rating of the game out of 10 and the genre */
@@ -44,9 +29,7 @@ public class Game {
         this.rating = newRating;
     }
 
-    // REQUIRES: newPercent must be 0, 25, 50, 80 or 100; 0 means the game
-    //           is unplayed, 25 means briefly tried, 50 is mostly complete,
-    //           80 is beat the game and 100 is completed the game
+    // REQUIRES: newPercent must be greater or equal to 0
     // MODIFIES: this
     // EFFECTS: Updates the percent completion value of the game
     //          by making percentCompleted = newPercent
@@ -59,13 +42,13 @@ public class Game {
     public boolean match(GameValues filterType, String filterValue) throws NullPointerException{
         switch (filterType) {
             case GameValues.PERCENTCOMPLETED:
-                return (Integer.parseInt(filterValue) == this.getPercentCompleted());
+                return (Float.parseFloat(filterValue) == this.getPercentCompleted());
             case GameValues.GENRE:
-                return (filterValue == this.getGenre());
+                return (filterValue.equals(this.getGenre()));
             case GameValues.FORMAT:
-                return (Type.valueOf(filterValue) == getFormat());
+                return (Type.valueOf(filterValue).equals(this.getFormat()));
             case GameValues.PLATFORM:
-                return (filterValue == this.getPlatform());
+                return (filterValue.equals(this.getPlatform()));
             case GameValues.RATING:
                 float v = Float.parseFloat(filterValue);
                 float f = Math.abs(v - this.getRating());
