@@ -41,15 +41,15 @@ public class Game {
     // EFFECTS: Helper for filterGames() that returns true if filterValue is equal to the game's value
     public boolean match(GameValues filterType, String filterValue) throws NullPointerException {
         switch (filterType) {
-            case GameValues.PERCENTCOMPLETED:
+            case PERCENTCOMPLETED:
                 return (Float.parseFloat(filterValue) == this.getPercentCompleted());
-            case GameValues.GENRE:
+            case GENRE:
                 return (filterValue.equals(this.getGenre()));
-            case GameValues.FORMAT:
+            case FORMAT:
                 return (Type.valueOf(filterValue).equals(this.getFormat()));
-            case GameValues.PLATFORM:
+            case PLATFORM:
                 return (filterValue.equals(this.getPlatform()));
-            case GameValues.RATING:
+            case RATING:
                 float v = Float.parseFloat(filterValue);
                 float f = Math.abs(v - this.getRating());
                 boolean res = f < 1;

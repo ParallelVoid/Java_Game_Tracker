@@ -70,6 +70,7 @@ public class CatalogueApp {
         System.out.println(str8);
     }
 
+    // EFFECTS: Finds a game from the list by name
     private Game findGame(String name) {
         for (int i = 0; i < catalogue.getListofGames().size(); i++) {
             if (name.equals(catalogue.getListofGames().get(i).getTitle())) {

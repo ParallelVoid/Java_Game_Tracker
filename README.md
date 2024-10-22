@@ -19,3 +19,5 @@ The primary targets are users who either collect video games or have a large bac
 1. As a user, I want to be able to change the percent completion of a game from the catalogue
 1. As a user, I want to be able to remove a game, by marking it as `sold`
 1. As a user, I want to be able to rate a game from the catalogue from 0 to 10, as a float
+1. As a user, I want to be able to save the added and modified games to a file
+1. As a user, I want to be able to load in my collection when starting the application
