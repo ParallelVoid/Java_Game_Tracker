@@ -4,8 +4,6 @@ import model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.experimental.categories.Category;
-
 // Test that compares the different values to the game
 public class JsonTest {
 

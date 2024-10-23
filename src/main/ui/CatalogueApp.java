@@ -1,22 +1,31 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 // import org.junit.platform.engine.TestDescriptor.*;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 // Repressents the catalogue application, that lets the user interact with their game catalogue
 public class CatalogueApp {
+    private static final String JSON_STORE = "./data/catalogue.json";
     Catalogue catalogue;
     boolean running;
     Scanner in;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // MODIFIES: this
     // EFFECTS: Runs the catalogue application
     public CatalogueApp() {
         in = new Scanner(System.in);
         catalogue = new Catalogue();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runCatalogue();
     }
 
@@ -42,6 +51,10 @@ public class CatalogueApp {
                 genreGamesPrint();
             } else if (newCommand.equals("sell game")) {
                 sell();
+            } else if (newCommand.equals("save catalogue")) {
+                save();
+            } else if (newCommand.equals("load catalogue")) {
+                load();
             } else {
                 help();
             }
@@ -58,6 +71,8 @@ public class CatalogueApp {
         String str5 = "- games of genre: prints the games in the Catalogue of chosen genre";
         String str6 = "- sell game: removes game from your Catalogue";
         String str7 = "- get game: edit a game status";
+        String str9 = "- save catalogue: saves the catalogue";
+        String str10 = "- load catalogue: loads your catalogue from json";
         String str8 = "- quit: quits the program";
 
         System.out.println(str1);
@@ -67,6 +82,8 @@ public class CatalogueApp {
         System.out.println(str5);
         System.out.println(str6);
         System.out.println(str7);
+        System.out.println(str9);
+        System.out.println(str10);
         System.out.println(str8);
     }
 
@@ -157,7 +174,7 @@ public class CatalogueApp {
     // EFFECTS: Helper for gameFunctions(), that takes a terminal input, then updates game value
     private void updateRating(Game game) {
         System.out.println("What would you rate " + game.getTitle() + " out of 10?");
-        int rating = Integer.parseInt(in.nextLine());
+        float rating = Float.parseFloat(in.nextLine());
         game.rateGame(rating);
     }
 
@@ -176,4 +193,28 @@ public class CatalogueApp {
         String filterGenre = in.nextLine();
         printGamesInList(catalogue.getGamesOfGenre(filterGenre));
     }
+
+    // EFFECTS: saves the catalogue to file
+    private void save() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(catalogue);
+            jsonWriter.close();
+            System.out.println("Saved catalogue to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Not able to save");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads catalogue from file
+    private void load() {
+        try {
+            catalogue = jsonReader.read();
+            System.out.println("Loaded your Catalogue from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Not able to load catalogue");
+        }
+    }
+
 }

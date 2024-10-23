@@ -1,0 +1,29 @@
+{"catalogue": [
+    {
+        "percentCompleted": 70,
+        "format": "DIGITAL",
+        "rating": 8.8,
+        "genre": "fighting",
+        "yearBought": 2023,
+        "title": "Ultimate Marvel Vs Capcom 3",
+        "platform": "Steam"
+    },
+    {
+        "percentCompleted": 50,
+        "format": "PHYSICAL",
+        "rating": 9,
+        "genre": "fighting",
+        "yearBought": 2019,
+        "title": "Tekken 3",
+        "platform": "PS1"
+    },
+    {
+        "percentCompleted": 0,
+        "format": "PHYSICAL",
+        "rating": 0,
+        "genre": "sports",
+        "yearBought": 2019,
+        "title": "NHL 09",
+        "platform": "PS3"
+    }
+]}
