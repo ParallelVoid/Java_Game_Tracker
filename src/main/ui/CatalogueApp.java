@@ -1,6 +1,5 @@
 package ui;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
@@ -17,16 +16,12 @@ public class CatalogueApp {
     Catalogue catalogue;
     boolean running;
     Scanner in;
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
 
     // MODIFIES: this
     // EFFECTS: Runs the catalogue application
     public CatalogueApp() {
         in = new Scanner(System.in);
         catalogue = new Catalogue();
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
         runCatalogue();
     }
 
@@ -52,9 +47,9 @@ public class CatalogueApp {
                 genreGamesPrint();
             } else if (newCommand.equals("sell game")) {
                 sell();
-            } else if (newCommand.equals("save catalogue")) {
+            } else if (newCommand.equals("save")) {
                 save();
-            } else if (newCommand.equals("load catalogue")) {
+            } else if (newCommand.equals("load")) {
                 load();
             } else {
                 help();
@@ -140,13 +135,13 @@ public class CatalogueApp {
     // EFFECTS: Helper for getGame(), that prints the details of the game and allows the user
     //          to call specific game functions from this point on
     private void gameFunctions(Game game) {
-        System.out.println("Title: " + game.getTitle());
-        System.out.println("Platform: " + game.getPlatform());
-        System.out.println("Format: " + game.getFormat());
-        System.out.println("Genre: " + game.getGenre());
-        System.out.println("Year Bought: " + game.getYearBought());
-        System.out.println("Percent Completed: " + game.getPercentCompleted());
-        System.out.println("Rating: " + game.getRating() + "\n");
+        System.out.println(Game.tagTitle + ": " + game.getTitle());
+        System.out.println(Game.tagPlatform + ": " + game.getPlatform());
+        System.out.println(Game.tagFormat + ": " + game.getFormat());
+        System.out.println(Game.tagGenre + ": " + game.getGenre());
+        System.out.println(Game.tagYearBought + ": " + game.getYearBought());
+        System.out.println(Game.tagCompletion + ": " + game.getPercentCompleted());
+        System.out.println(Game.tagRating + ": " + game.getRating() + "\n");
 
         System.out.println(
                 "You may select 1 to update percent completion, 2 to update rating, or 3 to return to main menu");
@@ -198,12 +193,13 @@ public class CatalogueApp {
     // EFFECTS: saves the catalogue to file
     private void save() {
         try {
+            JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
             jsonWriter.open();
             jsonWriter.write(catalogue);
             jsonWriter.close();
-            System.out.println("Saved catalogue to " + JSON_STORE);
-        } catch (FileNotFoundException e) {
-            System.out.println("Not able to save");
+            System.out.println("Successfully saved catalogue to " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Failed to save");
         }
     }
 
@@ -211,10 +207,11 @@ public class CatalogueApp {
     // EFFECTS: loads catalogue from file
     private void load() {
         try {
+            JsonReader jsonReader = new JsonReader(JSON_STORE);
             catalogue = jsonReader.read();
-            System.out.println("Loaded your Catalogue from " + JSON_STORE);
+            System.out.println("Successfully loaded your Catalogue from " + JSON_STORE);
         } catch (IOException e) {
-            System.out.println("Not able to load catalogue");
+            System.out.println("Failed to load catalogue");
         }
     }
 

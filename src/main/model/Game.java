@@ -8,6 +8,14 @@ import persistence.Writing;
 for which system the game is, the year the game was purchased, a 
 percent completed value, a rating of the game out of 10 and the genre */
 public class Game implements Writing {
+    public static final String tagTitle = "Title";
+    public static final String tagFormat = "Format";
+    public static final String tagPlatform = "Platform";
+    public static final String tagYearBought = "Year Bought";
+    public static final String tagCompletion = "Percent Completed";
+    public static final String tagRating = "Rating";
+    public static final String tagGenre = "Genre";
+
     private String title;           // name of the game
     private Type format;            // if the game is physical or digital
     private String platform;        // the system the game plays on
@@ -67,14 +75,13 @@ public class Game implements Writing {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("title", title);
-        json.put("format", format);
-        json.put("platform", platform);
-        json.put("yearBought", yearBought);
-        json.put("percentCompleted", percentCompleted);
-        json.put("rating", rating);
-        json.put("genre", rating);
-        json.put("genre", genre);
+        json.put(tagTitle, title);
+        json.put(tagFormat, format);
+        json.put(tagPlatform, platform);
+        json.put(tagYearBought, yearBought);
+        json.put(tagCompletion, percentCompleted);
+        json.put(tagRating, rating);
+        json.put(tagGenre, genre);
         return json;
     }
 
