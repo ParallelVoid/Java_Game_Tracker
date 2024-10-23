@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+
+import persistence.Writing;
+
 /* Represents a game that has a name, a physical or digital status,
 for which system the game is, the year the game was purchased, a 
 percent completed value, a rating of the game out of 10 and the genre */
-public class Game {
+public class Game implements Writing {
     private String title;           // name of the game
     private Type format;            // if the game is physical or digital
     private String platform;        // the system the game plays on
@@ -58,6 +62,20 @@ public class Game {
             default:
                 return false;
         }
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("title", title);
+        json.put("format", format);
+        json.put("platform", platform);
+        json.put("yearBought", yearBought);
+        json.put("percentCompleted", percentCompleted);
+        json.put("rating", rating);
+        json.put("genre", rating);
+        json.put("genre", genre);
+        return json;
     }
 
     public String getTitle() {

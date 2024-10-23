@@ -2,8 +2,13 @@ package model;
 
 import java.util.*;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistence.Writing;
+
 // Represents a collection of games
-public class Catalogue {
+public class Catalogue implements Writing {
     ArrayList<Game> listOfGames; // collection of games
 
     public Catalogue() {
@@ -49,6 +54,24 @@ public class Catalogue {
 
     public ArrayList<Game> getListofGames() {
         return this.listOfGames;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("catalogue", gamesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns games in the catalogue as a JSON array
+    private JSONArray gamesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Game g : listOfGames) {
+            jsonArray.put(g.toJson());
+        }
+
+        return jsonArray;
     }
 
 }
