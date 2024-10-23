@@ -11,6 +11,7 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 // Repressents the catalogue application, that lets the user interact with their game catalogue
+// Refrence: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/tree/master
 public class CatalogueApp {
     private static final String JSON_STORE = "./data/catalogue.json";
     Catalogue catalogue;
