@@ -12,7 +12,7 @@ import persistence.JsonWriter;
 // Repressents the catalogue application, that lets the user interact with their game catalogue
 // Refrence: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/tree/master
 public class CatalogueApp {
-    private static final String JSON_STORE = "./data/catalogue.json";
+    protected static final String JSON_STORE = "./data/catalogue.json";
     Catalogue catalogue;
     boolean running;
     Scanner in;
@@ -27,7 +27,7 @@ public class CatalogueApp {
 
     // EFFECTS: Processes user inputs
     @SuppressWarnings("methodlength")
-    private void runCatalogue() {
+    protected void runCatalogue() {
         running = true;
         while (running) {
             System.out.println("What would you like to do (press enter for help):");
@@ -103,7 +103,7 @@ public class CatalogueApp {
 
     // MODIFIES: this
     // EFFECTS: reads the terminal to create a new game
-    private void addGame(Catalogue catalogue) {
+    protected void addGame(Catalogue catalogue) {
         System.out.println("What game do you have?");
         String newGame = in.nextLine();
         System.out.println("Is your copy of " + newGame + " digital or physical?\n If physical enter true, else false");
@@ -184,14 +184,14 @@ public class CatalogueApp {
     }
 
     // EFFECTS: Takes a user input of the genre and prints the list
-    private void genreGamesPrint() {
+    protected void genreGamesPrint() {
         System.out.println("What Genre are we filtering?");
         String filterGenre = in.nextLine();
         printGamesInList(catalogue.getGamesOfGenre(filterGenre));
     }
 
     // EFFECTS: saves the catalogue to file
-    private void save() {
+    protected void save() {
         try {
             JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
             jsonWriter.open();
@@ -205,7 +205,7 @@ public class CatalogueApp {
 
     // MODIFIES: this
     // EFFECTS: loads catalogue from file
-    private void load() {
+    protected void load() {
         try {
             JsonReader jsonReader = new JsonReader(JSON_STORE);
             catalogue = jsonReader.read();
