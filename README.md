@@ -21,3 +21,13 @@ The primary targets are users who either collect video games or have a large bac
 1. As a user, I want to be able to rate a game from the catalogue from 0 to 10, as a float
 1. As a user, I want to be able to save the added and modified games to a file
 1. As a user, I want to be able to load in my collection when starting the application
+
+# Instructions for End User
+
+- You can generate the first required action related to the user story "adding games to a catalogue of games" by pressing the `Add Game` button on the toolbar and filling in the questions asked in the dialogue
+- You can generate the second required action related to the user story "viewing games in the catalogue" by pressing the `Catalogue` button; alternatively, if you wanted to view unplayed games, press the `Unplayed Games` button, and to filter by genre, press `Games of Genre` and input a genre into the dialogue
+- You can locate my visual component by selecting a game on the list of games panel - when the game detail is seen on the right there will be an image representing the game art. If you have game art of the game - name it the title of the game, swapping spaces for `-`, make sure it is of png format. Otherwise, a placeholder image is used
+- You can save the state of my application by pressing the `Save` button on the toolbar
+- You can reload the state of my application by pressing the `Load` button on the toolbar
+
+![Application](screenshot.png)
