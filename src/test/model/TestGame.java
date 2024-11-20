@@ -22,6 +22,7 @@ public class TestGame {
         assertEquals(testGame.getGenre(), "test");
         assertEquals(testGame.getPercentCompleted(), 0);
         assertEquals(testGame.getRating(), 0f);
+        assertEquals(testGame.getCover(), "Title.png");
     }
 
     @Test

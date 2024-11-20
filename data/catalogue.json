@@ -1,29 +1,38 @@
 {"catalogue": [
     {
-        "percentCompleted": 70,
-        "format": "DIGITAL",
-        "rating": 8.8,
-        "genre": "fighting",
-        "yearBought": 2023,
-        "title": "Ultimate Marvel Vs Capcom 3",
-        "platform": "Steam"
+        "Format": "DIGITAL",
+        "Platform": "Steam",
+        "Year Bought": 2023,
+        "Percent Completed": 70,
+        "Rating": 8.8,
+        "Title": "Ultimate Marvel Vs Capcom 3",
+        "Genre": "fighting"
     },
     {
-        "percentCompleted": 50,
-        "format": "PHYSICAL",
-        "rating": 9,
-        "genre": "fighting",
-        "yearBought": 2019,
-        "title": "Tekken 3",
-        "platform": "PS1"
+        "Format": "PHYSICAL",
+        "Platform": "PS1",
+        "Year Bought": 2019,
+        "Percent Completed": 50,
+        "Rating": 9,
+        "Title": "Tekken 3",
+        "Genre": "fighting"
     },
     {
-        "percentCompleted": 0,
-        "format": "PHYSICAL",
-        "rating": 0,
-        "genre": "sports",
-        "yearBought": 2019,
-        "title": "NHL 09",
-        "platform": "PS3"
+        "Format": "PHYSICAL",
+        "Platform": "PS3",
+        "Year Bought": 2019,
+        "Percent Completed": 0,
+        "Rating": 0,
+        "Title": "NHL 09",
+        "Genre": "sports"
+    },
+    {
+        "Format": "PHYSICAL",
+        "Platform": "3DS",
+        "Year Bought": 2017,
+        "Percent Completed": 99,
+        "Rating": 8.4,
+        "Title": "Pokemon Sun",
+        "Genre": "RPG"
     }
 ]}

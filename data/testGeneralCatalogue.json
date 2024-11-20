@@ -1,20 +1,20 @@
 {"catalogue": [
     {
-        "percentCompleted": 50,
-        "format": "PHYSICAL",
-        "rating": 9,
-        "genre": "fighting",
-        "yearBought": 2018,
-        "title": "Tekken 3",
-        "platform": "PS1"
+        "Format": "PHYSICAL",
+        "Platform": "PS1",
+        "Year Bought": 2018,
+        "Percent Completed": 50,
+        "Rating": 9,
+        "Title": "Tekken 3",
+        "Genre": "fighting"
     },
     {
-        "percentCompleted": 60,
-        "format": "DIGITAL",
-        "rating": 8.8,
-        "genre": "fighting",
-        "yearBought": 2023,
-        "title": "MVC3",
-        "platform": "Steam"
+        "Format": "DIGITAL",
+        "Platform": "Steam",
+        "Year Bought": 2023,
+        "Percent Completed": 60,
+        "Rating": 8.8,
+        "Title": "MVC3",
+        "Genre": "fighting"
     }
 ]}

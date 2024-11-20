@@ -23,15 +23,17 @@ public class Game implements Writing {
     private int percentCompleted;   // the percent completion value
     private float rating;           // the score the user gives to the game
     private String genre;           // the genre
+    private String cover;           // the cover string
 
     public Game(String title, String system, int whenBought, Type physical, String genre) {
-        this.title = title;
+        this.title = title.trim();
         this.format = physical;
-        this.platform = system;
+        this.platform = system.trim();
         this.yearBought = whenBought;
         this.percentCompleted = 0;
         this.rating = 0f;
-        this.genre = genre;
+        this.genre = genre.trim();
+        this.cover = this.title.replace(" ", "-") + ".png";
     }
 
     // REQUIRES: newRating must be between 0 and 10
@@ -111,6 +113,11 @@ public class Game implements Writing {
 
     public String getGenre() {
         return this.genre;
+    }
+
+    // EFFECTS: Returns a string of the title without spaces
+    public String getCover() {
+        return this.cover;
     }
 
 }

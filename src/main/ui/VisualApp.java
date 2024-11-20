@@ -3,6 +3,7 @@ package ui;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.imageio.ImageIO;
 
 import model.Catalogue;
 import model.Game;
@@ -10,17 +11,20 @@ import model.Game;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
+import java.nio.file.*;
 
 // Repressents a visual catalogue application, that lets the user interact with their game catalogue
 // Refrenced: https://docs.oracle.com/javase/tutorial/uiswing/components/componentlist.html
 public class VisualApp extends CatalogueApp {
-    JPanel listPanel;
-    JLabel detailLabel;
-    JPanel detailPanel;
-    DefaultListModel<String> allGames;
-    ArrayList<String> buttons;
-    JList<String> list;
-    List<Game> currentGames;
+    private JPanel listPanel;
+    private JLabel detailLabel;
+    private JPanel detailPanel;
+    private DefaultListModel<String> allGames;
+    private ArrayList<String> buttons;
+    private JList<String> list;
+    private List<Game> currentGames;
+    private static final String defaultArt = "./data/missingArtImage.png";
 
     // MODIFIES: this
     // EFFECTS: Runs the catalogue application
@@ -119,13 +123,13 @@ public class VisualApp extends CatalogueApp {
         listPanel = createListPanel();
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, listPanel, detailPanel);
-        splitPane.setDividerLocation(200); // Set initial size of the left panel (list)
+        splitPane.setDividerLocation(200);
 
         return splitPane;
     }
 
     // EFFECTS: Helper function for createSplitPane(), makes the list panel that has
-    //          all currently filtered games listed on it 
+    // all currently filtered games listed on it
     private JPanel createListPanel() {
         JPanel listPanel = new JPanel(new BorderLayout());
         list = new JList<>(allGames);
@@ -152,7 +156,7 @@ public class VisualApp extends CatalogueApp {
     }
 
     // EFFECTS: Helper function for createSplitPane(), makes the list panel that has
-    //          the details of the game selected 
+    // the details of the game selected
     private JPanel createDetailPanel() {
         detailPanel = new JPanel(new BorderLayout());
         detailLabel = new JLabel("Select an item to see details.");
@@ -196,7 +200,8 @@ public class VisualApp extends CatalogueApp {
 
     // REQUIRES: ans2 must be true or false
     // MODIFIES: this
-    // EFFECTS: Helper function for addGame, takes answer fields and makes a new game
+    // EFFECTS: Helper function for addGame, takes answer fields and makes a new
+    // game
     private void createGame(JTextField ans1, JTextField ans2, JTextField ans3, JTextField ans4, JTextField ans5) {
         String newGame = ans1.getText();
         boolean physicalBool = Boolean.parseBoolean(ans2.getText());
@@ -248,6 +253,29 @@ public class VisualApp extends CatalogueApp {
         gameDesciption += Game.tagCompletion + ": " + game.getPercentCompleted() + "<br/>";
         gameDesciption += Game.tagRating + ": " + game.getRating() + "<br/>";
         gameDesciption += Game.tagGenre + ": " + game.getGenre() + "<br/>";
+        drawGameArt(game);
         detailLabel.setText(gameDesciption);
+    }
+
+    // EFFECTS: Helper function for printGameDetails, draws game art if exists on panel,
+    //          else draws default art
+    private void drawGameArt(Game game) {
+        File gameArt = new File(Paths.get("./data/", game.getCover()).toString());
+        Image image;
+        ImageIcon imageIcon;
+        try {
+            image = ImageIO.read(gameArt);
+            image = image.getScaledInstance(image.getWidth(null) / 2, image.getHeight(null) / 2, Image.SCALE_DEFAULT);
+            imageIcon = new ImageIcon(image);
+            detailLabel.setIcon(imageIcon);
+        } catch (IOException e) {
+            try {
+                image = ImageIO.read(new File(defaultArt)).getScaledInstance(250, 250, Image.SCALE_DEFAULT);
+                imageIcon = new ImageIcon(image);
+                detailLabel.setIcon(imageIcon);
+            } catch (IOException e1) {
+                // Should not enter
+            }
+        }
     }
 }
