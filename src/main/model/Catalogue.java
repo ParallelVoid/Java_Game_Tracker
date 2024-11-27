@@ -15,30 +15,35 @@ public class Catalogue implements Writing {
         listOfGames = new ArrayList<Game>();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, EventLog
     // EFFECTS: adds a game to the catalogue if not already in it
     public void addGame(Game game) {
         if (!(listOfGames.contains(game))) {
             listOfGames.add(game);
         }
+        EventLog.getInstance().logEvent(new Event("Added " + game.getTitle() + " to the Catalogue"));
     }
 
+    // MODIFIES: EventLog
     // EFFECTS: Filters the catalogue and gets all the unfinished games
     public List<Game> getUnplayedGames() {
+        EventLog.getInstance().logEvent(new Event("Fetched unplayed games."));
         return filterGames(GameValues.PERCENTCOMPLETED, "0");
     }
 
+    // MODIFIES: EventLog
     // EFFECTS: Filters the catalogue and gets all the games of a certain genre
     public List<Game> getGamesOfGenre(String genre) {
+        EventLog.getInstance().logEvent(new Event("Filtered Games by Genre: " + genre));
         return filterGames(GameValues.GENRE, genre);
     }
 
     // EFFECTS: Helper function for getUnplayedGames and getGamesOfGenre that
-    //          filters the list of Games
+    // filters the list of Games
     public List<Game> filterGames(GameValues filterType, String filterValue) {
         ArrayList<Game> result = new ArrayList<>();
         for (int i = 0; i < listOfGames.size(); i++) {
-            if (listOfGames.get(i).match(filterType,filterValue)) {
+            if (listOfGames.get(i).match(filterType, filterValue)) {
                 result.add(listOfGames.get(i));
             }
         }
@@ -46,9 +51,10 @@ public class Catalogue implements Writing {
     }
 
     // REQUIRES: Game must be in the listOfGames
-    // MODIFIES: this
+    // MODIFIES: this, EventLog
     // EFFECTS: Deletes game from the listOfGames
     public void sellGame(Game game) {
+        EventLog.getInstance().logEvent(new Event("Sold " + game.getTitle()));
         listOfGames.remove(game);
     }
 
@@ -60,6 +66,7 @@ public class Catalogue implements Writing {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("catalogue", gamesToJson());
+        EventLog.getInstance().logEvent(new Event("Saved Catalogue to Json"));
         return json;
     }
 

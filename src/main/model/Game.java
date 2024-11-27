@@ -16,14 +16,14 @@ public class Game implements Writing {
     public static final String tagRating = "Rating";
     public static final String tagGenre = "Genre";
 
-    private String title;           // name of the game
-    private Type format;            // if the game is physical or digital
-    private String platform;        // the system the game plays on
-    private int yearBought;         // the year of purchase
-    private int percentCompleted;   // the percent completion value
-    private float rating;           // the score the user gives to the game
-    private String genre;           // the genre
-    private String cover;           // the cover string
+    private String title; // name of the game
+    private Type format; // if the game is physical or digital
+    private String platform; // the system the game plays on
+    private int yearBought; // the year of purchase
+    private int percentCompleted; // the percent completion value
+    private float rating; // the score the user gives to the game
+    private String genre; // the genre
+    private String cover; // the cover string
 
     public Game(String title, String system, int whenBought, Type physical, String genre) {
         this.title = title.trim();
@@ -37,22 +37,26 @@ public class Game implements Writing {
     }
 
     // REQUIRES: newRating must be between 0 and 10
-    // MODIFIES: this
+    // MODIFIES: this, EventLog
     // EFFECTS: Updates the rating of the game by making rating = newRating
     public void rateGame(float newRating) {
+        EventLog.getInstance().logEvent(new Event("Updated the Rating of " + this.title));
         this.rating = newRating;
     }
 
     // REQUIRES: newPercent must be greater or equal to 0
-    // MODIFIES: this
+    // MODIFIES: this, EventLog
     // EFFECTS: Updates the percent completion value of the game
-    //          by making percentCompleted = newPercent
+    // by making percentCompleted = newPercent
     public void updateCompletion(int newPercent) {
+        EventLog.getInstance().logEvent(new Event("Updated the Percent Completion of " + this.title));
         this.percentCompleted = newPercent;
     }
 
-    // REQUIRES:filterValue must be a string that represents a possible value for appropriate variable
-    // EFFECTS: Helper for filterGames() that returns true if filterValue is equal to the game's value
+    // REQUIRES:filterValue must be a string that represents a possible value for
+    // appropriate variable
+    // EFFECTS: Helper for filterGames() that returns true if filterValue is equal
+    // to the game's value
     public boolean match(GameValues filterType, String filterValue) throws NullPointerException {
         switch (filterType) {
             case PERCENTCOMPLETED:

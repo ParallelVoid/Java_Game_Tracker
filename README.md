@@ -31,3 +31,27 @@ The primary targets are users who either collect video games or have a large bac
 - You can reload the state of my application by pressing the `Load` button on the toolbar
 
 ![Application](screenshot.png)
+
+## Phase 4: Task 2
+Representation of EventLog on console:
+```
+Tue Nov 26 20:07:22 PST 2024
+Added Tekken 3 to the Catalogue
+
+
+Tue Nov 26 20:07:47 PST 2024
+Added Zubo to the Catalogue
+
+
+Tue Nov 26 20:08:23 PST 2024
+Added Pokemon Blue to the Catalogue
+
+
+Tue Nov 26 20:08:26 PST 2024
+Fetched unplayed games.
+
+
+Tue Nov 26 20:08:29 PST 2024
+Sold Zubo
+
+```

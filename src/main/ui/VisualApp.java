@@ -5,8 +5,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.imageio.ImageIO;
 
-import model.Catalogue;
-import model.Game;
+import model.*;
+import model.Event;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class VisualApp extends CatalogueApp {
     protected void runCatalogue() {
         allGames = new DefaultListModel<>();
         JFrame frame = new JFrame("Games Tracker");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // EXIT_ON_CLOSE
         frame.setSize(800, 600);
         JToolBar toolBar = createToolBar();
         JSplitPane splitPane = createSplitPane();
@@ -45,6 +45,15 @@ public class VisualApp extends CatalogueApp {
         frame.setLayout(new BorderLayout());
         frame.add(toolBar, BorderLayout.NORTH);
         frame.add(splitPane, BorderLayout.CENTER);
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                for (Event next : EventLog.getInstance()) {
+                    System.out.println(next.toString() + "\n\n");
+                }
+                System.exit(0);
+            }
+        });
 
         frame.setVisible(true);
     }
