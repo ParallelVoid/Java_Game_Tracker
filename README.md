@@ -55,3 +55,7 @@ Tue Nov 26 20:08:29 PST 2024
 Sold Zubo
 
 ```
+## Phase 4: Task 3
+![Diagram](UML_Design_Diagram.png)
+If I were to refactor, I would reduce coupling, trying to remove the arrow between Visual App and Game. The only reason for this implementation was due to needing away to have a filtered list of games for the List of game panel in the gui. There is likely a work around that I would have done, have I had more time. Besides that, there are still a few ways to break the program, so I would change all the locations that require an input to have a try/catch, thus, mitigating the potential crashes in the program. For example, technically do not need to enter numbers into the dialogues that appear, but this would break it, as you would not be able to rate the game, assign a value for when this game was bought, etc.
+
